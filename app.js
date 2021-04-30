@@ -29,7 +29,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-mongoose.connect("mongodb+srv://admin-uzma:" + process.env.PWD + "@cluster0.oqnhu.mongodb.net/secretsUserDb", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb+srv://admin-uzma:" + process.env.PWD + "@cluster0.oqnhu.mongodb.net/secretsUserDb?authSource=admin&compressors=zlib&retryWrites=true&w=majority&ssl=true", {useNewUrlParser: true, useUnifiedTopology: true})
 
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
