@@ -29,7 +29,32 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-mongoose.connect(process.env.URL , {useNewUrlParser: true, useUnifiedTopology: true})
+//mongoose.connect(process.env.URL , {useNewUrlParser: true, useUnifiedTopology: true});
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    });
+
+    console.log("MongoDB connection SUCCESS");
+  } catch (error) {
+    console.error("MongoDB connection FAIL");
+    process.exit(1);
+  }
+};
+const importData = async () => {
+  try {
+    await connectDB();
+    console.log("Data Import Success");
+  } catch (error) {
+    console.error("Error with data import", error);
+    process.exit(1);
+  }
+};
+importData();
 
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
