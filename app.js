@@ -29,7 +29,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-mongoose.connect("mongodb://localhost:27017/userdb", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb+srv://cluster0.oqnhu.mongodb.net/secretsUserDb", {useNewUrlParser: true, useUnifiedTopology: true})
 
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
