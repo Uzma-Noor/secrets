@@ -37,7 +37,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 mongoose.set('useCreateIndex', true);
-
+if(process.env.NODE_ENV === 'production'){
+    //set static folder
+    app.use(express.static('client/build'));
+}
 const userSchema =new mongoose.Schema({
   email: String,
   password: String,
